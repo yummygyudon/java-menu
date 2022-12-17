@@ -10,18 +10,12 @@ public class CoachNameInputValidator {
         private final int MIN_COACH = 2;
         private final Pattern pattern = Pattern.compile(regex);
 
-//        public CoachNameInputValidator(){
-//            this.regex = regex;
-//            this.errorMessage = errorMessage;
-//            this.pattern = complie(regex);
-//        }
-
         public void validate(String ... names){
             if(names.length < MIN_COACH){
                 throw new IllegalArgumentException(lessCoachErrorMessage);
             }
             for(String name : names){
-                Matcher matcher = pattern.matcher(name);
+                Matcher matcher = pattern.matcher(name.trim());
                 if (!matcher.matches()){
                     throw new IllegalArgumentException(wrongFormatErrorMessage);
                 }
