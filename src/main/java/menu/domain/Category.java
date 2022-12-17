@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Category {
@@ -18,12 +19,13 @@ public class Category {
     public String getName() {
         return name;
     }
+
     public List<String> getMenu() {
-        return menus;
+        return Collections.unmodifiableList(menus);
     }
 
     public String getRandomMenu(){
-        return Randoms.shuffle(menus).get(0);
+        return Randoms.shuffle(getMenu()).get(0);
     }
 
 }
