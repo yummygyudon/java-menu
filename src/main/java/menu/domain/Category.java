@@ -1,4 +1,6 @@
-package menu.menu.dto;
+package menu.domain;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,9 +18,12 @@ public class Category {
     public String getName() {
         return name;
     }
-
     public List<String> getMenu() {
         return menus;
+    }
+
+    public String getRandomMenu(){
+        return Randoms.shuffle(menus).get(0);
     }
 
 }
