@@ -1,12 +1,12 @@
-package menu.menu.repository;
+package menu.domain.repository;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.menu.dto.Category;
+import menu.domain.Category;
 
 import java.util.*;
 
 public class CategoryRepository {
-        private static final List<Map<String, Category>> categories = new ArrayList<>();
+        private static final List<Category> categories = new ArrayList<>();
 
         static {
             addCategory(new Category("일식",
@@ -21,31 +21,25 @@ public class CategoryRepository {
                     "라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
         }
         // read-only
-        public static List<Map<String, Category>> categories() {
+        public static List<Category> categories() {
             return Collections.unmodifiableList(categories);
         }
-        public static Map<String,Category> getRandomCategory() {
-            return categories.get(Randoms.pickNumberInRange(1, 5));
+        public static Category getRandomCategory() {
+            return categories.get(Randoms.pickNumberInRange(1, 5)-1);
         }
 
         // add
         private static void addCategory(Category category){
-            Map<String, Category> entry = new HashMap<>();
-            entry.put(category.getName(), category);
-            categories.add(entry);
+            categories.add(category);
         }
 
         // find
-//        public static Category findCategoryByName(String categoryName) {
-//            return categories.get(categoryName);
-//        }
-//        public static boolean isCategoryExist(String categoryName){
-//            return repo.containsKey(categoryName);
-//        }
+        public static Category findCategoryByName(String categoryName) {
+            return categories.stream()
+                    .filter(category -> category.getName().equals(categoryName))
+                    .findFirst()
+                    .get();
+        }
 
-        // delete
-//        public static boolean deleteLineByName(String name) {
-//            return repo.entrySet().removeIf(entry -> Objects.equals(entry.getKey(), name));
-//        }
     }
 
