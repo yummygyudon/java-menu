@@ -1,8 +1,11 @@
 package menu.view;
 
+import menu.model.Category;
+import menu.model.Coach;
 import menu.view.constant.Phrase;
 import menu.view.util.InputView;
 import menu.view.util.OutputView;
+import menu.view.util.converter.ResultFormatConverter;
 import menu.view.util.validator.MenuInputValidator;
 import menu.view.util.validator.NameInputValidator;
 
@@ -16,6 +19,7 @@ public class MenuView {
     private final OutputView out = new OutputView();
     private final MenuInputValidator menuInputValidator = new MenuInputValidator();
     private final NameInputValidator nameInputValidator = new NameInputValidator();
+    private final ResultFormatConverter resultConverter = new ResultFormatConverter();
 
     public List<String> readCoachName(){
         List<String> names = new ArrayList<>();
@@ -67,5 +71,22 @@ public class MenuView {
         }
     }
 
-
+    public void printStartPhrase(){
+        out.print(Phrase.START);
+        out.printBlankLine();
+    }
+    public void printColumnHeading(){
+        out.print(Phrase.NOTICE_RESULT);
+        out.print(resultConverter.convertWeekDaysToColumnHeading());
+    }
+    public void printRandomCategories(List<Category> randomCategories){
+        out.print(resultConverter.convertRandomCategoriesToResult(randomCategories));
+    }
+    public void printCoachResult(List<Coach> coaches){
+        for(Coach coach : coaches){
+            out.print(resultConverter.convertCoachToResult(coach));
+        }
+        out.printBlankLine();
+        out.print(Phrase.END);
+    }
 }
