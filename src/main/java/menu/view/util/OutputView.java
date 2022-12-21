@@ -1,6 +1,5 @@
-package menu.view;
+package menu.view.util;
 
-import java.io.Console;
 
 public class OutputView {
 
