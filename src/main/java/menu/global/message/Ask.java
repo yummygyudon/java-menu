@@ -1,0 +1,7 @@
+package menu.global.message;
+
+public abstract class Ask {
+
+    public static final String COACH_NAMES = "코치의 이름을 입력해 주세요. (, 로 구분)";
+    public static final String UNABLE_TO_EAT = "(이)가 못먹는 메뉴를 입력해주세요.";
+}
